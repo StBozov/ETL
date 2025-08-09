@@ -2,19 +2,27 @@
 
 ## Contents
 
-- [1. Initial Analysis of the Task](#1-initial-analysis-of-the-task)
-- [2. Key Questions and Assumptions](#2-key-questions-and-assumptions)
-  - [2.1. Client Considerations](#21-client-considerations)
-  - [2.2. Data Processor Considerations](#22-data-processor-considerations)
-  - [2.3. Server Considerations](#23-server-considerations)
-- [3. Proposed Approach](#3-proposed-approach)
-- [4. Architecture](#4-architecture)
-- [5. Debugging](#5-debugging)
-- [6. What's Next](#6-whats-next)
+- [1. Task Description](#1-task-description)
+- [2. Initial Analysis of the Task](#2-initial-analysis-of-the-task)
+- [3. Key Questions and Assumptions](#3-key-questions-and-assumptions)
+  - [3.1. Client Considerations](#31-client-considerations)
+  - [3.2. Data Processor Considerations](#32-data-processor-considerations)
+  - [3.3. Server Considerations](#33-server-considerations)
+- [4. Proposed Approach](#4-proposed-approach)
+- [5. Architecture](#5-architecture)
+- [6. Debugging](#6-debugging)
+- [7. Testing](#7-testing)
+- [8. What's Next](#8-whats-next)
 
 ---
 
-## 1. Initial Analysis of the Task
+## 1. Task Description
+
+**[See the full task here (ETL.Task/ETL task.pdf)](ETL.Task/ETL%20task.pdf)**
+
+---
+
+## 2. Initial Analysis of the Task
 
 The assignment outlines a typical ETL pipeline involving clients sending event data, a server persisting those events, and a separate processor loading aggregated data into a database. The general workflow appears as follows:
 
@@ -27,9 +35,9 @@ While this setup resembles common log or metrics processing pipelines, the taskâ
 
 ---
 
-## 2. Key Questions and Assumptions
+## 3. Key Questions and Assumptions
 
-### 2.1. Client Considerations
+### 3.1. Client Considerations
 
 - **Multiple Client Instances:**  
   The specification does not explicitly clarify whether multiple clients will send data concurrently. For a realistic scenario, it is assumed that multiple clients may submit events simultaneously.
@@ -43,7 +51,7 @@ While this setup resembles common log or metrics processing pipelines, the taskâ
 - **API Endpoint Naming:**  
   The endpoint `/userEvents/{userid}` implies returning raw event data, whereas the database only stores aggregated revenue per user. Renaming this endpoint to `/userRevenue/{userid}` would better align with the data model and expected behavior.
 
-### 2.2. Data Processor Considerations
+### 3.2. Data Processor Considerations
 
 - **Multiple Event Files:**  
   The task mentions that the data processor must handle multiple event files processed at different times, but it does not specify how these files are generated.
@@ -54,7 +62,7 @@ While this setup resembles common log or metrics processing pipelines, the taskâ
 - **Ordering and Aggregation:**  
   Correctly aggregating revenue depends on processing events in the proper order and avoiding duplicates.
 
-### 2.3. Server Considerations
+### 3.3. Server Considerations
 
 - **Appending Events to a File:**  
   The requirement to append all events to a single file, combined with the need for multiple files processed by the data processor, introduces complexity. The specification does not clarify how additional files are created.
@@ -64,7 +72,7 @@ While this setup resembles common log or metrics processing pipelines, the taskâ
 
 ---
 
-## 3. Proposed Approach
+## 4. Proposed Approach
 
 Given the above uncertainties and challenges, it is proposed to use a message broker (e.g., Apache Kafka) to replace the file-based event queue:
 
@@ -76,7 +84,7 @@ While this deviates from the original file-based design, it offers a more mainta
 
 ---
 
-## 4. Architecture
+## 5. Architecture
 
 ![ETL Pipeline Architecture](ETL.Documents/arch.png)
 
@@ -94,16 +102,20 @@ Workflow Overview:
 - Event Processing:
   One or more Processor services consume live events from Kafka, aggregate per-user revenue, and update the database accordingly.
 
-## 5. Debugging
+**Important:** Retrieving a user's revenue uses an eventual consistency model, so there may be a short delay before recent events are reflected in the reported revenue. As a result, clients might occasionally see slightly outdated values.
+
+## 6. Debugging
 
 *To be completed...*
 
 ---
 
-## 6. Testing
+## 7. Testing
 
 *To be completed...*
 
-## 7. What's Next
+---
+
+## 8. What's Next
 
 *To be completed...*
