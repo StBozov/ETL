@@ -2,25 +2,21 @@
 
 ## Contents
 
-- [1. Task Description](#1-task-description)
-- [2. Initial Analysis of the Task](#2-initial-analysis-of-the-task)
-- [3. Key Questions and Assumptions](#3-key-questions-and-assumptions)
-  - [3.1. Client Considerations](#31-client-considerations)
-  - [3.2. Data Processor Considerations](#32-data-processor-considerations)
-  - [3.3. Server Considerations](#33-server-considerations)
-- [4. Proposed Approach](#4-proposed-approach)
-- [5. Architecture](#5-architecture)
-- [6. Debugging](#6-debugging)
-- [7. Testing](#7-testing)
-- [8. What's Next](#8-whats-next)
-
----
+[1. Task Description](#1-task-description)
+[2. Initial Analysis of the Task](#2-initial-analysis-of-the-task)
+[3. Key Questions and Assumptions](#3-key-questions-and-assumptions)
+  [3.1. Client Considerations](#31-client-considerations)
+  [3.2. Data Processor Considerations](#32-data-processor-considerations)
+  [3.3. Server Considerations](#33-server-considerations)
+[4. Proposed Approach](#4-proposed-approach)
+[5. Architecture](#5-architecture)
+[6. Debugging](#6-debugging)
+[7. Testing](#7-testing)
+[8. What's Next](#8-whats-next)
 
 ## 1. Task Description
 
 **[See the full task here (ETL.Task/ETL task.pdf)](ETL.Task/ETL%20task.pdf)**
-
----
 
 ## 2. Initial Analysis of the Task
 
@@ -32,8 +28,6 @@ The assignment outlines a typical ETL pipeline involving clients sending event d
 - The server also exposes a GET endpoint to retrieve user data from the database.
 
 While this setup resembles common log or metrics processing pipelines, the taskâ€™s focus on accurately calculating user revenue introduces additional complexity around consistency and ordering.
-
----
 
 ## 3. Key Questions and Assumptions
 
@@ -70,8 +64,6 @@ While this setup resembles common log or metrics processing pipelines, the taskâ
 - **Scalability and Concurrency:**  
   Without further specification, implementing a robust solution that handles concurrent clients, multiple event files, and consistent processing is challenging.
 
----
-
 ## 4. Proposed Approach
 
 Given the above uncertainties and challenges, it is proposed to use a message broker (e.g., Apache Kafka) to replace the file-based event queue:
@@ -81,8 +73,6 @@ Given the above uncertainties and challenges, it is proposed to use a message br
 - The data processor can consume events in real time or batch mode without the complexity of file management.
 
 While this deviates from the original file-based design, it offers a more maintainable, scalable, and robust architecture for revenue processing.
-
----
 
 ## 5. Architecture
 
@@ -127,9 +117,10 @@ Running the system multiple times may change the revenue values, as new live eve
 
 ## 8. What's Next
 
+- Add support for both local and remote configuration management.
 - Implement comprehensive input validation.
 - Improve error handling throughout the system.
 - Integrate OpenTelemetry for distributed tracing and monitoring.
 - Add OpenAPI (Swagger) documentation for the API.
-- Develop unit, integration, and end-to-end tests.
+- Develop unit, integration, performance and end-to-end tests.
 - Set up CI/CD pipelines for automated building.
