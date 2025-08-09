@@ -109,9 +109,10 @@ The first run may take up to several minutes (depending on the machine and inter
 
 ## 7. Testing
 
+- Wait until all live events have been processed and stored in the database (you can monitor this progress in the ETL.Processor DEBUG CONSOLE).
 - Navigate to the `ETL.Tests` folder.
 - Run `get-all.cmd` to query the API for all users' revenues.
-- Compare the output with the values in `expected-result.txt` to verify correctness. Original live events can be seen in `ETL.Files/events.txt`.
+- Compare the output with the values in `expected-result.txt` to verify correctness. Raw live events can be seen in `ETL.Files/events.txt`.
 
 **Note:**  
 Running the system multiple times may change the revenue values, as new live events may be processed and aggregated.
