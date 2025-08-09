@@ -1,16 +1,18 @@
 using ETL.Service.Auth;
 using ETL.Service.Events;
 using ETL.Service.Publishing;
+using ETL.Service.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-IAuthProvider authProvider = AuthProviderFactory.Create();
+// Use DI if more services are added in the future
 IPublisher publisher = PublisherFactory.Create();
+IRepository repository = RepositoryFactory.Create();
+IAuthProvider authProvider = AuthProviderFactory.Create();
 
 app.MapGet("/userRevenue", async (HttpRequest req, string userId) =>
 {
-    // TODO: `userId` must be validated in a real life scenario
     string token = TokenExtractor.Extract(req);
 
     if (!await authProvider.IsValidToken(token))
@@ -18,13 +20,14 @@ app.MapGet("/userRevenue", async (HttpRequest req, string userId) =>
         return Results.Unauthorized();
     }
 
-    // TODO: Implement logic to retrieve user revenue from the repository
-    return Results.Ok();
+    // TODO: `userId` must be validated
+    int revenue = await repository.GetRevenue(userId);
+
+    return Results.Ok(revenue);
 });
 
 app.MapPost("/liveEvent", async (HttpRequest req, LiveEvent e) =>
 {
-    // TODO: `e` must be validated in a real life scenario
     string token = TokenExtractor.Extract(req);
 
     if (!await authProvider.IsValidToken(token))
@@ -32,6 +35,7 @@ app.MapPost("/liveEvent", async (HttpRequest req, LiveEvent e) =>
         return Results.Unauthorized();
     }
 
+    // TODO: `e` must be validated
     var isSuccess = await publisher.Publish(e);
 
     return isSuccess
