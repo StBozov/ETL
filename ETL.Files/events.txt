@@ -1,0 +1,5 @@
+{ "userId": "user1", "eventName": "add_revenue", "revenueValue": 98 }
+{ "userId": "user1", "eventName": "subtract_revenue", "revenueValue": 72 }
+{ "userId": "user2", "eventName": "add_revenue", "revenueValue": 70 }
+{ "userId": "user1", "eventName": "add_revenue", "revenueValue": 1 }
+{ "userId": "user2", "eventName": "subtract_revenue", "revenueValue": 12 }

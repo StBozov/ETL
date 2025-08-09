@@ -1,0 +1,67 @@
+{
+    "version": "0.2.0",
+    "compounds": [
+        {
+            "name": "Start All",
+            "configurations": [
+                "ETL.Service",
+                "ETL.Client",
+                "ETL.Processor",
+                "ETL.Auth",
+                "ETL.Gateway"
+            ]
+        }
+    ],
+    "configurations": [
+        {
+            "name": "ETL.Processor",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "docker-and-build",
+            "program": "${workspaceFolder}/ETL.Processor/bin/Debug/net9.0/ETL.Processor.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/ETL.Processor",
+            "stopAtEntry": false
+        },
+        {
+            "name": "ETL.Service",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/ETL.Service/bin/Debug/net9.0/ETL.Service.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/ETL.Service",
+            "stopAtEntry": false
+        },
+        {
+            "name": "ETL.Client",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/ETL.Client/bin/Debug/net9.0/ETL.Client.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/ETL.Client",
+            "stopAtEntry": false
+        },
+        {
+            "name": "ETL.Auth",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/ETL.Auth/bin/Debug/net9.0/ETL.Auth.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/ETL.Auth",
+            "stopAtEntry": false
+        },
+        {
+            "name": "ETL.Gateway",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/ETL.Gateway/bin/Debug/net9.0/ETL.Gateway.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/ETL.Gateway",
+            "stopAtEntry": false
+        }
+    ]
+}

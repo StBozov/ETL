@@ -1,0 +1,24 @@
+{
+    "files.exclude": {
+        "**/bin": true,
+        "**/obj": true,
+        "**/.gitignore": true,
+        "**/LICENSE": true,
+        "**/*.sln": true,
+        "**/*.yml": true,
+        "**/README*": false,
+    },
+    "search.exclude": {
+        "**/bin": true,
+        "**/obj": true
+    },
+    "cSpell.words": [
+        "ASPNETCORE",
+        "bitnami",
+        "HATEOS",
+        "initdb",
+        "Npgsql",
+        "Postgre",
+        "wurstmeister"
+    ]
+}

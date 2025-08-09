@@ -1,0 +1,47 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "docker-compose-up",
+            "type": "shell",
+            "command": "docker-compose up -d",
+            "problemMatcher": []
+        },
+        {
+            "label": "wait-for-docker",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-Command",
+                "$max=30; $i=0; while ($i -lt $max) { try { docker exec postgres pg_isready -U postgres; if ($LASTEXITCODE -eq 0) { exit 0 } } catch {}; Start-Sleep -Seconds 2; $i++ } exit 1"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "docker-compose-up-and-wait",
+            "dependsOn": [
+                "docker-compose-up",
+                "wait-for-docker"
+            ],
+            "dependsOrder": "sequence"
+        },
+        {
+            "label": "build",
+            "type": "process",
+            "command": "dotnet",
+            "args": [
+                "build",
+                "${workspaceFolder}/ETL.sln"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "docker-and-build",
+            "dependsOn": [
+                "docker-compose-up-and-wait",
+                "build"
+            ],
+            "dependsOrder": "sequence"
+        }
+    ]
+}
