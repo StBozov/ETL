@@ -2,17 +2,17 @@
 
 ## Contents
 
-[1. Task Description](#1-task-description)
-[2. Initial Analysis of the Task](#2-initial-analysis-of-the-task)
-[3. Key Questions and Assumptions](#3-key-questions-and-assumptions)
-  [3.1. Client Considerations](#31-client-considerations)
-  [3.2. Data Processor Considerations](#32-data-processor-considerations)
-  [3.3. Server Considerations](#33-server-considerations)
-[4. Proposed Approach](#4-proposed-approach)
-[5. Architecture](#5-architecture)
-[6. Debugging](#6-debugging)
-[7. Testing](#7-testing)
-[8. What's Next](#8-whats-next)
+- [1. Task Description](#1-task-description)
+- [2. Initial Analysis of the Task](#2-initial-analysis-of-the-task)
+- [3. Key Questions and Assumptions](#3-key-questions-and-assumptions)
+  - [3.1. Client Considerations](#31-client-considerations)
+  - [3.2. Data Processor Considerations](#32-data-processor-considerations)
+  - [3.3. Server Considerations](#33-server-considerations)
+- [4. Proposed Approach](#4-proposed-approach)
+- [5. Architecture](#5-architecture)
+- [6. Debugging](#6-debugging)
+- [7. Testing](#7-testing)
+- [8. What's Next](#8-whats-next)
 
 ## 1. Task Description
 
