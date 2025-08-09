@@ -20,7 +20,7 @@ The assignment outlines a typical ETL pipeline involving clients sending event d
 
 - Clients send individual JSON event records.
 - The server appends these events to a local file in an append-only manner.
-- A separate data processor reads these files, computes per-user revenue, and updates the database.
+- A separate data processor events these files, computes per-user revenue, and updates the database.
 - The server also exposes a GET endpoint to retrieve user data from the database.
 
 While this setup resembles common log or metrics processing pipelines, the task’s focus on accurately calculating user revenue introduces additional complexity around consistency and ordering.
@@ -78,9 +78,21 @@ While this deviates from the original file-based design, it offers a more mainta
 
 ## 4. Architecture
 
-*To be completed...*
+![ETL Pipeline Architecture](ETL.Documents/arch.png)
 
----
+Workflow Overview:
+
+- Authentication:
+  The client first requests a token from the Auth Service.
+
+- Event Submission:
+  The client sends live event data to the REST Service. Multiple instances of the REST Service can run behind an API Gateway, which handles load balancing and service discovery.
+
+- Event Streaming:
+  The REST Service publishes incoming live events to the Kafka message broker. It also provides an endpoint for retrieving a user's revenue.
+
+- Event Processing:
+  One or more Processor services consume live events from Kafka, aggregate per-user revenue, and update the database accordingly.
 
 ## 5. Debugging
 
@@ -88,6 +100,10 @@ While this deviates from the original file-based design, it offers a more mainta
 
 ---
 
-## 6. What's Next
+## 6. Testing
+
+*To be completed...*
+
+## 7. What's Next
 
 *To be completed...*
