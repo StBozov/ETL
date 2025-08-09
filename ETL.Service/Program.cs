@@ -24,8 +24,9 @@ app.MapGet("/userRevenue", async (HttpRequest req, string userId) =>
 
     // TODO: `userId` must be validated
     int revenue = await repository.GetRevenue(userId);
+    string result = $"{{\"userId\":\"{userId}\",\"revenue\":{revenue}}}";
 
-    return Results.Ok(revenue);
+    return Results.Ok(result);
 });
 
 app.MapPost("/liveEvent", async (HttpRequest req, LiveEvent e) =>
