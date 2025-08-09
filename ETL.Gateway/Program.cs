@@ -8,4 +8,4 @@ var app = builder.Build();
 app.MapReverseProxy();
 app.Run();
 
-// TODO: auth can be done here instead of ETL.Service
+// TODO: auth can be done here instead of in ETL.Service

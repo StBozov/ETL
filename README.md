@@ -125,6 +125,8 @@ Running the system multiple times may change the revenue values, as new live eve
 - Integrate OpenTelemetry for distributed tracing and monitoring.
 - Add OpenAPI (Swagger) documentation for the API.
 - Develop unit, integration, performance and end-to-end tests.
+- Build Dockerfiles and container images for all services
+- Set up Kubernetes (K8S) for container orchestration
 - Set up CI/CD pipelines for automated building.
 
 ## 9. ENJOY 😊
