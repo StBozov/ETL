@@ -5,7 +5,7 @@
         "**/.gitignore": true,
         "**/LICENSE": true,
         "**/*.sln": true,
-        "**/*.yml": true,
+        "**/*.yml": false,
         "**/README*": false,
     },
     "search.exclude": {

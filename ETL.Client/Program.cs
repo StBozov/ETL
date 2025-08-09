@@ -20,7 +20,7 @@ class Program
             Console.WriteLine($"post live event result: {success}");
         }
 
-        Console.WriteLine("All live events posted. Exiting...");
+        Console.WriteLine("All live events posted...");
         Console.ReadLine();
     }
 

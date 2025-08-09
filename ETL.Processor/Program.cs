@@ -75,6 +75,9 @@ class Program
         // a performance issue may arise (regarding the DB), 
         // so consider events batching (calculation) before invoking repository.AddRevenue
 
+        // TODO: there is one special case when RevenueValue is a negative number and we apply -(negation)
+        // TODO: Unit test must cover this scenario
+
         int revenue = e.EventName == "add_revenue"
             ? e.RevenueValue
             : -e.RevenueValue;

@@ -9,6 +9,8 @@ namespace ETL.Client.Service
 {
     public class RestService : IService
     {
+        // TODO: GetUrl, PostUrl, and MediaType must be get by some kind of config (local or remote)
+
         private const string MediaType = "application/json";
         private const string PostUrl = "http://localhost:5091/liveEvent";
         private const string GetUrl = "http://localhost:5091/userRevenue";

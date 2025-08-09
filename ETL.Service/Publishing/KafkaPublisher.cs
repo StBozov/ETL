@@ -6,6 +6,7 @@ namespace ETL.Service.Publishing
 {
     public class KafkaPublisher : IPublisher
     {
+        // TODO: Topic and BootstrapServers must be get by some kind of config (local or remote)
         private const string Topic = "live-events";
 
         private readonly IProducer<string, string> producer;
@@ -33,7 +34,7 @@ namespace ETL.Service.Publishing
 
         private Message<string, string> CreateMessage(LiveEvent e)
         {
-            string key = e.UserId;
+            string key = e.UserId; // important for partitioning
             string value = JsonSerializer.Serialize(e);
             return new Message<string, string> { Key = key, Value = value };
         }

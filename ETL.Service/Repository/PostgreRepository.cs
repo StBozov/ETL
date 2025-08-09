@@ -5,7 +5,7 @@ using ETL.Service.Repository;
 // instead it should call another service, let's say ETL.Persistence
 public class PostgreRepository : IRepository
 {
-    // TODO: connection must be get by some kind of config (local or remote)
+    // TODO: connectionString must be get by some kind of config (local or remote)
     private readonly string connectionString;
     private readonly string sql;
 
@@ -26,7 +26,7 @@ public class PostgreRepository : IRepository
         var result = await cmd.ExecuteScalarAsync();
 
         return result == null
-            ? 0
+            ? 0 // TODO: is it ok to return 0 if no revenue is found?
             : Convert.ToInt32(result);
     }
 }

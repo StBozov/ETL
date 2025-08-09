@@ -5,6 +5,7 @@ namespace ETL.Client.Auth
 {
     public class CustomAuthProvider : IAuthProvider
     {
+        // TODO: AuthUrl and MediaType must be get by some kind of config (local or remote)
         private const string AuthUrl = "http://localhost:5090/auth";
         private const string MediaType = "application/json";
 
@@ -31,6 +32,8 @@ namespace ETL.Client.Auth
         {
             HttpResponseMessage authResponse = await httpClient.PostAsync(AuthUrl, authContent);
             string tokenJson = await authResponse.Content.ReadAsStringAsync();
+
+            // TODO: token must be validated before use
 
             JsonDocument jsonDocument = JsonDocument.Parse(tokenJson);
             string? token = jsonDocument.RootElement.GetProperty("token").GetString();
