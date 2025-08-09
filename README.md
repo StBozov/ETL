@@ -106,16 +106,30 @@ Workflow Overview:
 
 ## 6. Debugging
 
-*To be completed...*
+- Ensure you have **VS Code**, **Docker**, and **.NET 9** installed on your system.
+- Make sure Docker Desktop is running.
+- Clone the repository to your local machine.
+- Open the project folder in VS Code.
+- Go to the **Run and Debug** menu and select the `Start All` profile.
+- Press **F5** to start debugging.
 
----
+**Note:**  
+The first run may take up to several minutes (depending on the machine and internet connection) as Docker pulls the required Kafka and PostgreSQL images. Please be patient while the containers are being set up.
 
 ## 7. Testing
 
-*To be completed...*
+- Navigate to the `ETL.Tests` folder.
+- Run `get-all.cmd` to query the API for all users' revenues.
+- Compare the output with the values in `expected-result.txt` to verify correctness. Original live events can be seen in `ETL.Files/events.txt`.
 
----
+**Note:**  
+Running the system multiple times may change the revenue values, as new live events may be processed and aggregated.
 
 ## 8. What's Next
 
-*To be completed...*
+- Implement comprehensive input validation.
+- Improve error handling throughout the system.
+- Integrate OpenTelemetry for distributed tracing and monitoring.
+- Add OpenAPI (Swagger) documentation for the API.
+- Develop unit, integration, and end-to-end tests.
+- Set up CI/CD pipelines for automated building.
