@@ -90,12 +90,13 @@ Workflow Overview:
   The REST Service publishes incoming live events to the Kafka message broker. It also provides an endpoint for retrieving a user's revenue.
 
 - Event Processing:
-  One or more Processor services consume live events from Kafka, aggregate per-user revenue, and update the database accordingly.
+  One or more Processor services consume live events from Kafka and update the database accordingly.
 
 **Important:** Retrieving a user's revenue uses an eventual consistency model, so there may be a short delay before recent events are reflected in the reported revenue. As a result, clients might occasionally see slightly outdated values.
 
 ## 6. Debugging
 
+- Ensure you have Windows machine, ideally Windows 11
 - Ensure you have **VS Code**, **Docker**, and **.NET 9** installed on your system.
 - Make sure Docker Desktop is running.
 - Clone the repository to your local machine.

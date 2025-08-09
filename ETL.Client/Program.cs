@@ -8,12 +8,12 @@ class Program
     {
         IService service = CreateService();
 
-        // TODO: `token` must be refreshed in a real life scenario
+        // TODO: `token` must be refreshed
         string token = await GetToken();
 
         await foreach (LiveEvent e in GetEvents())
         {
-            // TODO: `e` must be validated in a real life scenario
+            // TODO: `e` must be validated
             Console.WriteLine($"posting live event: {e}");
 
             bool success = await service.PostLiveEvent(e, token);
