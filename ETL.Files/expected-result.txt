@@ -1,0 +1,10 @@
+user1: 94
+user2: 166
+user3: 118
+user4: 46
+user5: 248
+user6: 117
+user7: 196
+user8: 161
+user9: 77
+user10: 171
