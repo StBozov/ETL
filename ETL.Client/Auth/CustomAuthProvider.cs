@@ -13,7 +13,11 @@ namespace ETL.Client.Auth
 
         public CustomAuthProvider()
         {
-            httpClient = new();
+            httpClient = new()
+            {
+                Timeout = TimeSpan.FromMinutes(5)
+            };
+
             authContent = CreateAuthContent();
         }
 
@@ -28,7 +32,7 @@ namespace ETL.Client.Auth
             HttpResponseMessage authResponse = await httpClient.PostAsync(AuthUrl, authContent);
             string tokenJson = await authResponse.Content.ReadAsStringAsync();
 
-            JsonDocument jsonDocument = JsonDocument.Parse(tokenJson); 
+            JsonDocument jsonDocument = JsonDocument.Parse(tokenJson);
             string? token = jsonDocument.RootElement.GetProperty("token").GetString();
             return token;
         }

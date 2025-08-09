@@ -17,7 +17,10 @@ namespace ETL.Client.Service
 
         public RestService()
         {
-            httpClient = new HttpClient();
+            httpClient = new()
+            {
+                Timeout = TimeSpan.FromMinutes(5)
+            };
         }
 
         public async Task<UserRevenue> GetUserRevenue(string userId, string token)

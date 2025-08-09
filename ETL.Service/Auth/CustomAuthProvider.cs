@@ -11,7 +11,10 @@ namespace ETL.Service.Auth
 
         public CustomAuthProvider()
         {
-            httpClient = new HttpClient();
+            httpClient = new()
+            {
+                Timeout = TimeSpan.FromMinutes(5)
+            };
         }
 
         public async Task<bool> IsValidToken(string token)

@@ -14,13 +14,14 @@ class Program
         await foreach (LiveEvent e in GetEvents())
         {
             // TODO: `e` must be validated in a real life scenario
-            Console.WriteLine($"posting event: {e}");
+            Console.WriteLine($"posting live event: {e}");
 
             bool success = await service.PostLiveEvent(e, token);
             Console.WriteLine($"post live event result: {success}");
         }
 
         Console.WriteLine("All live events posted. Exiting...");
+        Console.ReadLine();
     }
 
     private static async Task<string> GetToken()

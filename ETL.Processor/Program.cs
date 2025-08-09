@@ -20,7 +20,7 @@ class Program
         {
             BootstrapServers = bootstrapServers,
             GroupId = groupId,
-            TopicMetadataRefreshIntervalMs = 600_000,
+            TopicMetadataRefreshIntervalMs = 300_000,
             AutoOffsetReset = AutoOffsetReset.Earliest
         };
 

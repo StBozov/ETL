@@ -14,7 +14,9 @@ namespace ETL.Service.Publishing
         {
             var kafkaConfig = new ProducerConfig
             {
-                BootstrapServers = "localhost:9092"
+                BootstrapServers = "localhost:9092",
+                MessageTimeoutMs = 300_000,
+                SocketTimeoutMs = 300_000
             };
 
             producer = new ProducerBuilder<string, string>(kafkaConfig).Build();

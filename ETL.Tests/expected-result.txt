@@ -1,3 +1,5 @@
+Expected result after the very first run, then revenues will be different!!!
+
 user1: 94
 user2: 166
 user3: 118
