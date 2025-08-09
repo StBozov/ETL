@@ -1,5 +1,3 @@
-using Yarp.ReverseProxy;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
@@ -10,4 +8,4 @@ var app = builder.Build();
 app.MapReverseProxy();
 app.Run();
 
-// TODO: auth can be done here instead of into the ETL.Service
+// TODO: auth can be done here instead of ETL.Service
