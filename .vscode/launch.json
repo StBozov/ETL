@@ -24,23 +24,13 @@
             "stopAtEntry": false
         },
         {
-            "name": "ETL.Service",
+            "name": "ETL.Gateway",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/ETL.Service/bin/Debug/net9.0/ETL.Service.dll",
+            "program": "${workspaceFolder}/ETL.Gateway/bin/Debug/net9.0/ETL.Gateway.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/ETL.Service",
-            "stopAtEntry": false
-        },
-        {
-            "name": "ETL.Client",
-            "type": "coreclr",
-            "request": "launch",
-            "preLaunchTask": "build",
-            "program": "${workspaceFolder}/ETL.Client/bin/Debug/net9.0/ETL.Client.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}/ETL.Client",
+            "cwd": "${workspaceFolder}/ETL.Gateway",
             "stopAtEntry": false
         },
         {
@@ -54,13 +44,23 @@
             "stopAtEntry": false
         },
         {
-            "name": "ETL.Gateway",
+            "name": "ETL.Client",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/ETL.Gateway/bin/Debug/net9.0/ETL.Gateway.dll",
+            "program": "${workspaceFolder}/ETL.Client/bin/Debug/net9.0/ETL.Client.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/ETL.Gateway",
+            "cwd": "${workspaceFolder}/ETL.Client",
+            "stopAtEntry": false
+        },
+        {
+            "name": "ETL.Service",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/ETL.Service/bin/Debug/net9.0/ETL.Service.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/ETL.Service",
             "stopAtEntry": false
         }
     ]
