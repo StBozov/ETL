@@ -6,17 +6,18 @@ class Program
 {
     static async Task Main()
     {
-        IService service = CreateService();
-
         // TODO: `token` must be refreshed
         string token = await GetToken();
+
+        // TODO: a new service instance must be created for each new token (reusing service instance won't be safe anymore)
+        IService service = CreateService(token);
 
         await foreach (LiveEvent e in GetEvents())
         {
             // TODO: `e` must be validated
             Console.WriteLine($"posting live event: {e}");
 
-            bool success = await service.PostLiveEvent(e, token);
+            bool success = await service.PostLiveEvent(e);
             Console.WriteLine($"post live event result: {success}");
         }
 
@@ -46,5 +47,5 @@ class Program
         }
     }
 
-    private static IService CreateService() => ServiceFactory.Create();
+    private static IService CreateService(string token) => ServiceFactory.Create(token);
 }

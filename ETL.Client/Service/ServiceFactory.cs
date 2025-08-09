@@ -3,16 +3,11 @@ namespace ETL.Client.Service
     // No need of thread safety for now
     public static class ServiceFactory
     {
-        private static readonly RestService restService;
+        private static RestService? restService;
 
-        static ServiceFactory()
+        public static IService Create(string token)
         {
-            restService = new RestService();
-        }
-
-        public static IService Create()
-        {
-            return restService;
+            return restService ??= new RestService(token);
         }
     }
 }

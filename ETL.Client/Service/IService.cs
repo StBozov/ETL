@@ -4,7 +4,7 @@ namespace ETL.Client.Service
 {
     public interface IService
     {
-        Task<UserRevenue> GetUserRevenue(string userId, string token);
-        Task<bool> PostLiveEvent(LiveEvent e, string token);
+        Task<UserRevenue> GetUserRevenue(string userId);
+        Task<bool> PostLiveEvent(LiveEvent e);
     }
 }

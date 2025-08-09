@@ -17,18 +17,20 @@ namespace ETL.Client.Service
 
         private readonly HttpClient httpClient;
 
-        public RestService()
+        public RestService(string token)
         {
             httpClient = new()
             {
+                DefaultRequestHeaders =
+                {
+                    Authorization = new AuthenticationHeaderValue("Bearer", token)
+                },
                 Timeout = TimeSpan.FromMinutes(5)
             };
         }
 
-        public async Task<UserRevenue> GetUserRevenue(string userId, string token)
+        public async Task<UserRevenue> GetUserRevenue(string userId)
         {
-            SetAuthorizationHeader(httpClient, token);
-
             string url = $"{GetUrl}/{userId}";
             HttpResponseMessage response = await httpClient.GetAsync(url);
 
@@ -49,27 +51,15 @@ namespace ETL.Client.Service
             return userRevenue;
         }
 
-        public async Task<bool> PostLiveEvent(LiveEvent e, string token)
+        public async Task<bool> PostLiveEvent(LiveEvent e)
         {
-            SetAuthorizationHeader(httpClient, token);
-
-            string payload = CreateLiveEventPayload(e);
+            string payload = JsonSerializer.Serialize(e);
             StringContent postContent = new(payload, Encoding.UTF8, MediaType);
 
             var response = await httpClient.PostAsync(PostUrl, postContent);
 
             HttpStatusCode statusCode = response.StatusCode;
             return statusCode == HttpStatusCode.OK;
-        }
-
-        private void SetAuthorizationHeader(HttpClient httpClient, string token)
-        {
-            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-        }
-
-        private string CreateLiveEventPayload(LiveEvent e)
-        {
-            return JsonSerializer.Serialize(e);
         }
     }
 }
