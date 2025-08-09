@@ -66,7 +66,7 @@ While this setup resembles common log or metrics processing pipelines, the taskâ
 
 ## 4. Proposed Approach
 
-Given the above uncertainties and challenges, it is proposed to use a message broker (e.g., Apache Kafka) to replace the file-based event queue:
+Given the above uncertainties and challenges, I decided to use a message broker (e.g., Apache Kafka) instead of file-based event queue:
 
 - Kafka naturally supports multiple producers and consumers with ordered, durable event logs.
 - It simplifies scaling and concurrency, ensuring ordered processing per user partition.
