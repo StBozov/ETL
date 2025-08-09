@@ -11,6 +11,8 @@ IPublisher publisher = PublisherFactory.Create();
 IRepository repository = RepositoryFactory.Create();
 IAuthProvider authProvider = AuthProviderFactory.Create();
 
+// TODO: Ideally /userRevenue method should be extracted to a separate service
+// for better scaling strategy (K8S)
 app.MapGet("/userRevenue", async (HttpRequest req, string userId) =>
 {
     string token = TokenExtractor.Extract(req);

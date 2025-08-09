@@ -13,7 +13,7 @@
             "command": "powershell",
             "args": [
                 "-Command",
-                "$max=1200; $i=0; while ($i -lt $max) { try { docker exec postgres pg_isready -U postgres; if ($LASTEXITCODE -eq 0) { exit 0 } } catch {}; Start-Sleep -Seconds 5; $i++ } exit 1"
+                "$max=120000; $i=0; while ($i -lt $max) { try { docker exec postgres pg_isready -U postgres; if ($LASTEXITCODE -eq 0) { exit 0 } } catch {}; Start-Sleep -Seconds 5; $i++ } exit 1"
             ],
             "problemMatcher": []
         },

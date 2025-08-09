@@ -19,6 +19,8 @@ class Program
             bool success = await service.PostLiveEvent(e, token);
             Console.WriteLine($"post live event result: {success}");
         }
+
+        Console.WriteLine("All live events posted. Exiting...");
     }
 
     private static async Task<string> GetToken()
